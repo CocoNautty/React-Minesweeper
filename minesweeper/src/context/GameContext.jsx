@@ -1,0 +1,1 @@
+// Manages the game state across components
