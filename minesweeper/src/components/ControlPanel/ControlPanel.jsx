@@ -7,7 +7,7 @@ import React, { useContext } from 'react';
 import { GameContext } from '../../context/GameContext';
 import DifficultySelector from '../DifficultySelector/DifficultySelector';
 import Timer from '../Timer/Timer';
-// import './ControlPanel.css';
+import './ControlPanel.css'
 
 const ControlPanel = () => {
     const { state, dispatch } = useContext(GameContext);
@@ -25,7 +25,7 @@ const ControlPanel = () => {
     const remainingMines = difficulty.mines - flagsPlaced;
 
     return (
-        <div className="control-panel">
+        <div className="controlPanel">
             <div className="mine-counter">
                 <span role="img" aria-label="Mine">💣</span>
                 <span>{remainingMines}</span>
