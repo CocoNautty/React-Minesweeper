@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { GameProvider } from './context/GameContext'
+import Timer from './components/Timer/Timer'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         </div>
         <div id='control-panel'>
           {/* <ControlPanel></ControlPanel> */}
+          <Timer></Timer>
         </div>
         <div id='board'>
           {/* <board></board> */}

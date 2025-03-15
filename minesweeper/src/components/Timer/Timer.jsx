@@ -1,7 +1,7 @@
 import { formatTime } from "../../utils/formatTime";
 import React, { useContext, useEffect } from 'react';
 import { GameContext } from '../../context/GameContext';
-import './Timer.css';
+// import './Timer.css';
 const Timer = () => {
     const { state, dispatch } = useContext(GameContext);
     const { timer, isTimerRunning, gameStatus } = state;
@@ -11,7 +11,7 @@ const Timer = () => {
         if (isTimerRunning && gameStatus === 'playing') {
             interval = setInterval(() => {
                 dispatch({ type: 'INCREMENT_TIMER' });
-            }, 1000);
+            }, 10);
         }
         return () => {
             if (interval) clearInterval(interval);
@@ -19,7 +19,7 @@ const Timer = () => {
     }, [isTimerRunning, gameStatus, dispatch]);
     return (
         <div className="timer">
-            <span role="img" aria-label="Timer">:stopwatch:</span>
+            <span role="img" aria-label="Timer"></span>
             <span>{formatTime(timer)}</span>
         </div>
     );
