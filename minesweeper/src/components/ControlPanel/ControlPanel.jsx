@@ -5,8 +5,8 @@
 // Displays mine counter (flags remaining)
 import React, { useContext } from 'react';
 import { GameContext } from '../../context/GameContext';
-import DifficultySelector from '../DifficultySelector';
-import Timer from '../Timer';
+import DifficultySelector from '../DifficultySelector/DifficultySelector';
+import Timer from '../Timer/Timer';
 // import './ControlPanel.css';
 
 const ControlPanel = () => {

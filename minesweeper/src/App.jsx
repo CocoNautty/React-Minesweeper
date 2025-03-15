@@ -5,7 +5,7 @@ import './App.css'
 import { GameProvider } from './context/GameContext'
 import Timer from './components/Timer/Timer'
 import ControlPanel from './components/ControlPanel/ControlPanel'
-
+import Board from './components/Board/Board'
 function App() {
 
   return (
@@ -18,7 +18,7 @@ function App() {
           <ControlPanel></ControlPanel>
         </div>
         <div id='board'>
-          {/* <board></board> */}
+          <Board></Board>
         </div>
         <footer><p>Yixuan Chen, Anlin Ma &copy; 2025</p></footer>
       </GameProvider>
