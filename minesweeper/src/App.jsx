@@ -16,9 +16,6 @@ function App() {
       <div id='board'>
         {/* <board></board> */}
       </div>
-      <div id='leader-board'>
-        {/* <LeaderBoard></LeaderBoard> */}
-      </div>
       <footer><p>Yixuan Chen, Anlin Ma &copy; 2025</p></footer>
     </div>
   )

@@ -10,10 +10,11 @@ div{
 }
 #App{
   display: flex;
+  justify-content: space-between;
+  flex-flow: column wrap;
 }
-#title{
-  position: relative;
-}
+
+
 footer{
   position: absolute;
   bottom: 10px;
