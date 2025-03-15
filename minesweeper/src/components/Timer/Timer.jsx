@@ -1,7 +1,7 @@
 import { formatTime } from "../../utils/formatTime";
 import React, { useContext, useEffect } from 'react';
 import { GameContext } from '../../context/GameContext';
-// import './Timer.css';
+import './Timer.css';
 const Timer = () => {
     const { state, dispatch } = useContext(GameContext);
     const { timer, isTimerRunning, gameStatus } = state;

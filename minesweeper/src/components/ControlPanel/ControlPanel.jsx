@@ -40,9 +40,6 @@ const ControlPanel = () => {
             <div className='NewGame'>
                 <button onClick={handleNewGame}>New Game</button>
             </div>
-
-            
-
             <DifficultySelector />
         </div>
     );

@@ -11,12 +11,6 @@ div{
 #App{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-flow: column wrap;
-}
-
-
-footer{
-  position: relative;
-  bottom: 10px;
-  left: 20px;
 }
