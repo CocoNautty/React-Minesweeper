@@ -15,7 +15,6 @@ function App() {
         </div>
         <div id='control-panel'>
           {/* <ControlPanel></ControlPanel> */}
-          <Timer></Timer>
         </div>
         <div id='board'>
           {/* <board></board> */}
