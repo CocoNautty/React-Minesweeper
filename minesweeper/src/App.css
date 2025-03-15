@@ -16,7 +16,7 @@ div{
 
 
 footer{
-  position: absolute;
+  position: relative;
   bottom: 10px;
   left: 20px;
 }

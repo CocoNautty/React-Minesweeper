@@ -26,19 +26,22 @@ const ControlPanel = () => {
 
     return (
         <div className="controlPanel">
-            <div className="mine-counter">
+            <Timer />
+            <div className="MineCounter">
                 <span role="img" aria-label="Mine">💣</span>
                 <span>{remainingMines}</span>
             </div>
 
-            <div className="game-controls">
+            <div className="Restart">
                 <button onClick={handleRestart} title="Restart Game">
                     {gameStatus === 'lost' ? '😵' : gameStatus === 'won' ? '😎' : '🙂'}
                 </button>
+            </div>
+            <div className='NewGame'>
                 <button onClick={handleNewGame}>New Game</button>
             </div>
 
-            <Timer />
+            
 
             <DifficultySelector />
         </div>

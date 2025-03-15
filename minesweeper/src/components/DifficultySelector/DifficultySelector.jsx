@@ -45,7 +45,7 @@ const DifficultySelector = () => {
     };
 
     return (
-        <div className="difficulty-selector">
+        <div className="DifficultySelector">
             <select onChange={(e) => handleDifficultyChange(e.target.value)}>
                 <option value="EASY">Easy</option>
                 <option value="MEDIUM">Medium</option>
@@ -54,7 +54,7 @@ const DifficultySelector = () => {
             </select>
 
             {showCustomForm && (
-                <form className="custom-difficulty" onSubmit={handleCustomSubmit}>
+                <form className="CustomDifficulty" onSubmit={handleCustomSubmit}>
                     <div>
                         <label htmlFor="width">Width:</label>
                         <input
