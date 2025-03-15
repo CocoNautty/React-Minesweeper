@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { GameProvider } from './context/GameContext'
 import Timer from './components/Timer/Timer'
+import ControlPanel from './components/ControlPanel/ControlPanel'
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
           <h1 id='title'>MINESWEEPER</h1>
         </div>
         <div id='control-panel'>
-          {/* <ControlPanel></ControlPanel> */}
+          <ControlPanel></ControlPanel>
         </div>
         <div id='board'>
           {/* <board></board> */}
