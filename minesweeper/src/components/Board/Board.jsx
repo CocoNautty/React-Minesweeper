@@ -6,7 +6,7 @@
 import React, { useContext } from 'react';
 import Tile from '../Tile/Tile';
 import { GameContext } from '../../context/GameContext';
-// import './Board.css';
+import './Board.css';
 
 const Board = () => {
   const { state } = useContext(GameContext);

@@ -1,0 +1,214 @@
+/* Tile styles */
+.tile {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.1s, transform 0.1s;
+  }
+
+  /* Hidden tile (unrevealed) */
+  .tile.hidden {
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #7b7b7b;
+    border-bottom: 2px solid #7b7b7b;
+  }
+
+  .tile.hidden:hover {
+    background-color: #d0d0d0;
+  }
+
+  .tile.hidden:active {
+    background-color: #b0b0b0;
+    border-top: 2px solid #7b7b7b;
+    border-left: 2px solid #7b7b7b;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: scale(0.95);
+  }
+
+  /* Revealed tile */
+  .tile.revealed {
+    background-color: #e0e0e0;
+    border: 1px solid #a0a0a0;
+    font-weight: bold;
+    cursor: default;
+  }
+
+  /* Flagged tile */
+  .tile.flagged {
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #7b7b7b;
+    border-bottom: 2px solid #7b7b7b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+  }
+
+  /* Mine */
+  .tile.revealed.mine {
+    background-color: #ff0000;
+    color: #000000;
+  }
+
+  /* Number colors based on adjacent mines */
+  .tile.revealed.neighbor-1 {
+    color: #0000ff; /* Blue */
+  }
+
+  .tile.revealed.neighbor-2 {
+    color: #008000; /* Green */
+  }
+
+  .tile.revealed.neighbor-3 {
+    color: #ff0000; /* Red */
+  }
+
+  .tile.revealed.neighbor-4 {
+    color: #000080; /* Dark Blue */
+  }
+
+  .tile.revealed.neighbor-5 {
+    color: #800000; /* Maroon */
+  }
+
+  .tile.revealed.neighbor-6 {
+    color: #008080; /* Teal */
+  }
+
+  .tile.revealed.neighbor-7 {
+    color: #000000; /* Black */
+  }
+
+  .tile.revealed.neighbor-8 {
+    color: #808080; /* Gray */
+  }
+
+  /* Animation when revealing a tile */
+  @keyframes revealTile {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .tile.just-revealed {
+    animation: revealTile 0.2s ease-out;
+  }
+
+  /* Animation when flagging a tile */
+  @keyframes flagTile {
+    0% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .tile.just-flagged {
+    animation: flagTile 0.2s ease-out;
+  }
+
+  /* Exploded mine */
+  .tile.revealed.mine.exploded {
+    background-color: #ff0000;
+    color: #ffffff;
+  }
+
+  /* Mobile optimization */
+  @media (max-width: 768px) {
+    .tile {
+      width: 25px;
+      height: 25px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tile {
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+    }
+  }
+
+  /* Accessibility focus styles */
+  .tile:focus {
+    outline: 2px solid #2196f3;
+    outline-offset: -2px;
+    z-index: 1;
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .tile.hidden {
+      background-color: #757575;
+      border-top-color: #9e9e9e;
+      border-left-color: #9e9e9e;
+      border-right-color: #424242;
+      border-bottom-color: #424242;
+    }
+
+    .tile.hidden:hover {
+      background-color: #9e9e9e;
+    }
+
+    .tile.revealed {
+      background-color: #616161;
+      border-color: #212121;
+      color: #ffffff;
+    }
+
+    .tile.revealed.mine {
+      background-color: #c62828;
+      color: #ffffff;
+    }
+
+    /* Adjust number colors for dark mode */
+    .tile.revealed.neighbor-1 {
+      color: #90caf9; /* Light Blue */
+    }
+
+    .tile.revealed.neighbor-2 {
+      color: #a5d6a7; /* Light Green */
+    }
+
+    .tile.revealed.neighbor-3 {
+      color: #ef9a9a; /* Light Red */
+    }
+
+    .tile.revealed.neighbor-4 {
+      color: #9fa8da; /* Light Indigo */
+    }
+
+    .tile.revealed.neighbor-5 {
+      color: #ffab91; /* Light Deep Orange */
+    }
+
+    .tile.revealed.neighbor-6 {
+      color: #80deea; /* Light Cyan */
+    }
+
+    .tile.revealed.neighbor-7 {
+      color: #e6ee9c; /* Light Lime */
+    }
+
+    .tile.revealed.neighbor-8 {
+      color: #eeeeee; /* Light Gray */
+    }
+  }

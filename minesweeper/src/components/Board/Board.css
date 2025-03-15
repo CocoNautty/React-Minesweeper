@@ -1,0 +1,176 @@
+/* Board Container Styles */
+.board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    overflow: auto;
+  }
+
+  /* Game Board Grid */
+  .board {
+    display: grid;
+    gap: 1px;
+    background-color: #bbbbbb;
+    border: 3px solid #7b7b7b;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #555555;
+    border-bottom-color: #555555;
+    padding: 3px;
+    user-select: none;
+  }
+
+  /* Responsive adjustments for different board sizes */
+  @media (max-width: 768px) {
+    .board-container {
+      padding: 5px;
+      margin: 10px auto;
+    }
+
+    /* For smaller screens, reduce the cell size */
+    .board {
+      --cell-size: 25px; /* Override the default cell size */
+    }
+  }
+
+  /* For very small screens (mobile) */
+  @media (max-width: 480px) {
+    .board-container {
+      padding: 2px;
+    }
+
+    .board {
+      --cell-size: 20px; /* Even smaller cells */
+    }
+  }
+
+  /* Animation for when the board is created */
+  @keyframes boardAppear {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .board {
+    animation: boardAppear 0.3s ease-out;
+  }
+
+  /* Styles for when game is won or lost */
+  .board.game-won {
+    background-color: #c8e6c9; /* Light green background for winning */
+  }
+
+  .board.game-lost {
+    background-color: #ffcdd2; /* Light red background for losing */
+  }
+
+  /* Classic 3D border effect for the board */
+  .board-3d-container {
+    background-color: #bdbdbd;
+    padding: 10px;
+    border-radius: 4px;
+    border-top: 3px solid #f5f5f5;
+    border-left: 3px solid #f5f5f5;
+    border-right: 3px solid #616161;
+    border-bottom: 3px solid #616161;
+  }
+
+  /* When the board is in "first-click" state */
+  .board.first-click {
+    cursor: pointer;
+  }
+
+  /* Add a subtle hover effect to the board on first click */
+  .board.first-click:hover {
+    background-color: #c5c5c5;
+  }
+
+  /* For accessible navigation - focus indicator */
+  .board:focus {
+    outline: 3px solid #2196f3;
+    outline-offset: 2px;
+  }
+
+  /* Custom scrollbars for the board container when content overflows */
+  .board-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .board-container::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 5px;
+  }
+
+  .board-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+
+  .board-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  /* When in "debug mode" - showing all mines */
+  .board.debug-mode {
+    opacity: 0.9;
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .board-container {
+      background-color: #424242;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .board {
+      background-color: #616161;
+      border-top-color: #9e9e9e;
+      border-left-color: #9e9e9e;
+      border-right-color: #212121;
+      border-bottom-color: #212121;
+    }
+
+    .board.game-won {
+      background-color: #2e7d32; /* Darker green for dark mode */
+    }
+
+    .board.game-lost {
+      background-color: #c62828; /* Darker red for dark mode */
+    }
+
+    .board-container::-webkit-scrollbar-track {
+      background: #424242;
+    }
+
+    .board-container::-webkit-scrollbar-thumb {
+      background: #757575;
+    }
+
+    .board-container::-webkit-scrollbar-thumb:hover {
+      background: #9e9e9e;
+    }
+  }
+
+  /* Printing optimization */
+  @media print {
+    .board-container {
+      box-shadow: none;
+      border: 1px solid #000;
+    }
+
+    .board {
+      border: 2px solid #000;
+    }
+  }
