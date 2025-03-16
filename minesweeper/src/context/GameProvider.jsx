@@ -1,5 +1,5 @@
 // Manages the game state across components
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { DIFFICULTIES } from '../constants/difficulties';
 import { generateBoard } from '../utils/boardGenerator';
 import { revealCell } from '../utils/cellReveal';
@@ -33,10 +33,15 @@ const gameReducer = (state, action) => {
         gameStatus: 'playing',
         flagsPlaced: 0,
         timer: 0,
-        isTimerRunning: true,
+        isTimerRunning: false,
         firstClick: true
       };
 
+    case 'PLAYING_GAME':
+      return{
+        ...state,
+        isTimerRunning: true
+      }
     case 'RESTART_GAME':
       return {
         ...state,
@@ -44,7 +49,7 @@ const gameReducer = (state, action) => {
         gameStatus: 'playing',
         flagsPlaced: 0,
         timer: 0,
-        isTimerRunning: true,
+        isTimerRunning: false,
         firstClick: true
       };
 
@@ -175,9 +180,23 @@ export const GameProvider = ({ children }) => {
     const [state, dispatch] = useReducer(gameReducer, initialState);
 
     // set game start
-    if (state.gameStatus === 'idle') {
-      dispatch({ type: 'START_GAME' });
-    }
+    useEffect(() => {
+      if (state.difficulty ) {
+        dispatch({ type: 'START_GAME' });
+
+        const clickHandler = (e) => {
+          dispatch( { type: 'PLAYING_GAME' });
+          console.log('aaaa');
+        };
+
+        document.querySelector("#board > div > div").addEventListener('click', clickHandler);
+
+        return () => {
+          document.querySelector("#board > div > div").removeEventListener('click', clickHandler);
+        }
+
+      }
+    }, [state.difficulty, state.gameStatus]);
 
     return (
       <GameContext.Provider value={{ state, dispatch }}>

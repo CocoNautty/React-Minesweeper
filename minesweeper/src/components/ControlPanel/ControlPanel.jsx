@@ -25,23 +25,26 @@ const ControlPanel = () => {
     const remainingMines = difficulty.mines - flagsPlaced;
 
     return (
-        <div className="controlPanel">
+        <>
             <Timer />
-            <div className="MineCounter">
-                <span role="img" aria-label="Mine">💣</span>
-                <span>{remainingMines}</span>
-            </div>
 
-            <div className="Restart">
-                <button onClick={handleRestart} title="Restart Game">
-                    {gameStatus === 'lost' ? '😵' : gameStatus === 'won' ? '😎' : '🙂'}
-                </button>
+            <div className="controlPanel">
+                <div className="MineCounter">
+                    <span role="img" aria-label="Mine">💣</span>
+                    <span>{remainingMines}</span>
+                </div>
+
+                <div className="Restart">
+                    <button onClick={handleRestart} title="Restart Game">
+                        {gameStatus === 'lost' ? '😵' : gameStatus === 'won' ? '😎' : '🙂'}
+                    </button>
+                </div>
+                <div className='NewGame'>
+                    <button onClick={handleNewGame}>New Game</button>
+                </div>
+                <DifficultySelector />
             </div>
-            <div className='NewGame'>
-                <button onClick={handleNewGame}>New Game</button>
-            </div>
-            <DifficultySelector />
-        </div>
+        </>
     );
 };
 
