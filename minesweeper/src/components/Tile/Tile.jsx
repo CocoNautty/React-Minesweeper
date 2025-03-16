@@ -4,7 +4,7 @@
 
 // Different visual states (hidden, revealed, flagged, mine)
 import React, { useContext } from 'react';
-import { GameContext } from '../../context/GameContext';
+import GameContext from '../../context/GameContextObj';
 import './Tile.css';
 
 const Tile = ({ cell, row, col }) => {

@@ -1,31 +1,37 @@
-// Recursively reveal cells
 export const revealCell = (board, row, col) => {
-    if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
-      return board; // Out of bounds
+  // Create a copy of the board only once, at the top level
+  const newBoard = board.map(r => [...r]);
+
+  // Use a helper function to modify the board in place
+  const revealCellHelper = (r, c) => {
+    // Check bounds
+    if (r < 0 || r >= newBoard.length || c < 0 || c >= newBoard[0].length) {
+      return;
     }
 
-    const cell = board[row][col];
+    const cell = newBoard[r][c];
 
-    // Don't reveal flagged cells or already revealed cells
+    // Skip flagged or already revealed cells
     if (cell.isFlagged || cell.revealed) {
-      return board;
+      return;
     }
 
-    // Create a new board with the current cell revealed
-    const newBoard = board.map(r => [...r]);
-    newBoard[row][col] = { ...cell, revealed: true };
+    // Reveal this cell
+    newBoard[r][c] = { ...cell, revealed: true };
 
-    // If the cell has no neighboring mines, reveal its neighbors
+    // If empty cell (no neighboring mines), recursively reveal neighbors
     if (cell.neighborMines === 0 && !cell.isMine) {
-      // Reveal all 8 neighboring cells recursively
       for (let i = -1; i <= 1; i++) {
         for (let j = -1; j <= 1; j++) {
           if (i === 0 && j === 0) continue;
-
-          revealCell(newBoard, row + i, col + j);
+          revealCellHelper(r + i, c + j);
         }
       }
     }
-
-    return newBoard;
   };
+
+  // Start the recursion
+  revealCellHelper(row, col);
+
+  return newBoard;
+};

@@ -5,7 +5,7 @@
 // Handles grid sizing based on difficulty
 import React, { useContext } from 'react';
 import Tile from '../Tile/Tile';
-import { GameContext } from '../../context/GameContext';
+import GameContext from '../../context/GameContextObj';
 import './Board.css';
 
 const Board = () => {

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { GameContext } from '../../context/GameContext';
+import GameContext from '../../context/GameContextObj';
 import { DIFFICULTIES } from '../../constants/difficulties';
 // import './DifficultySelector.css';
 
