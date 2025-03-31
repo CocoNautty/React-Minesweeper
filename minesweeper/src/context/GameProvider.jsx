@@ -40,8 +40,10 @@ const gameReducer = (state, action) => {
     case 'PLAYING_GAME':
       return{
         ...state,
+        gameStatus: 'playing',
         isTimerRunning: true
-      }
+      };
+
     case 'RESTART_GAME':
       return {
         ...state,
@@ -154,8 +156,6 @@ const gameReducer = (state, action) => {
 
 
     case 'TOGGLE_FLAG':
-      console.log(1);
-      
       // Placeholder - this will be implemented with flagging logic
       return state;
 
@@ -182,11 +182,17 @@ export const GameProvider = ({ children }) => {
 
     // set game start
     useEffect(() => {
-      if (state.difficulty && state.gameStatus==='idle') {
-        dispatch({ type: 'START_GAME' });
-        
+      if (state.difficulty) {
+
+        if(state.gameStatus==='idle') {
+          dispatch({ type: 'START_GAME' });
+        }
+
         const clickHandler = (e) => {
-          dispatch( { type: 'PLAYING_GAME' });
+          if(state.gameStatus !== 'playing') {
+            return;
+          }
+          dispatch({ type: 'PLAYING_GAME' });
         };
 
         document.querySelector("#board > div > div").addEventListener('click', clickHandler);
