@@ -114,7 +114,7 @@ const gameReducer = (state, action) => {
         return {
           ...state,
           board: revealedBoard,
-          // gameStatus: 'lost',
+          gameStatus: 'lost',
           isTimerRunning: false
         };
       }
@@ -140,7 +140,7 @@ const gameReducer = (state, action) => {
         return {
           ...state,
           board: winBoard,
-          // gameStatus: 'won',
+          gameStatus: 'won',
           isTimerRunning: false,
           flagsPlaced: state.difficulty.mines // All mines are flagged automatically
         };
@@ -154,6 +154,8 @@ const gameReducer = (state, action) => {
 
 
     case 'TOGGLE_FLAG':
+      console.log(1);
+      
       // Placeholder - this will be implemented with flagging logic
       return state;
 
@@ -180,9 +182,9 @@ export const GameProvider = ({ children }) => {
 
     // set game start
     useEffect(() => {
-      if (state.difficulty ) {
+      if (state.difficulty && state.gameStatus==='idle') {
         dispatch({ type: 'START_GAME' });
-
+        
         const clickHandler = (e) => {
           dispatch( { type: 'PLAYING_GAME' });
         };
