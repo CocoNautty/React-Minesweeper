@@ -40,7 +40,6 @@ const gameReducer = (state, action) => {
     case 'PLAYING_GAME':
       return{
         ...state,
-        gameStatus: 'playing',
         isTimerRunning: true
       };
 
@@ -62,7 +61,7 @@ const gameReducer = (state, action) => {
         gameStatus: 'idle'
       };
 
-    case 'REVEAL_CELL':
+    case 'REVEAL_CELL':{
       const { row, col } = action.payload;
       let updatedBoard = [...state.board];
       const cell = updatedBoard[row][col];
@@ -153,11 +152,54 @@ const gameReducer = (state, action) => {
         ...state,
         board: updatedBoard
       };
+    }
 
+    case 'TOGGLE_FLAG':{
+      const { row, col } = action.payload;
 
-    case 'TOGGLE_FLAG':
-      // Placeholder - this will be implemented with flagging logic
-      return state;
+      // Don't allow flagging if game isn't in progress or if the cell is already revealed
+      if (state.gameStatus !== 'playing' || state.board[row][col].revealed) {
+        return state;
+      }
+
+      // Create a copy of the board
+      const updatedBoard = state.board.map(r => [...r]);
+
+      // Toggle the flag on the clicked cell
+      const cell = updatedBoard[row][col];
+      const isFlagged = !cell.isFlagged;
+      updatedBoard[row][col] = { ...cell, isFlagged };
+
+      // Update flag count
+      const flagsPlaced = state.flagsPlaced + (isFlagged ? 1 : -1);
+
+      // Optional: Check if all mines are correctly flagged
+      const allMinesFlagged = updatedBoard.flat().every(
+        cell => cell.isMine ? cell.isFlagged : true
+      );
+
+      const allNonMineRevealed = updatedBoard.flat().every(
+        cell => !cell.isMine ? cell.revealed : true
+      );
+
+      // Win if all mines are flagged and all non-mine cells are revealed
+      // This is an alternative win condition that some Minesweeper variants use
+      let gameStatus = state.gameStatus;
+      let isTimerRunning = state.isTimerRunning;
+
+      if (allMinesFlagged && allNonMineRevealed) {
+        gameStatus = 'won';
+        isTimerRunning = false;
+      }
+
+      return {
+        ...state,
+        board: updatedBoard,
+        flagsPlaced,
+        gameStatus,
+        isTimerRunning
+      };
+    }
 
     case 'INCREMENT_TIMER':
       return {
