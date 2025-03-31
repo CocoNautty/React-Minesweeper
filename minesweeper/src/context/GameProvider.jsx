@@ -61,7 +61,6 @@ const gameReducer = (state, action) => {
       };
 
     case 'REVEAL_CELL':
-      // Placeholder - this will be implemented with cell reveal logic
       const { row, col } = action.payload;
       let updatedBoard = [...state.board];
       const cell = updatedBoard[row][col];
@@ -115,7 +114,7 @@ const gameReducer = (state, action) => {
         return {
           ...state,
           board: revealedBoard,
-          gameStatus: 'lost',
+          // gameStatus: 'lost',
           isTimerRunning: false
         };
       }
@@ -141,7 +140,7 @@ const gameReducer = (state, action) => {
         return {
           ...state,
           board: winBoard,
-          gameStatus: 'won',
+          // gameStatus: 'won',
           isTimerRunning: false,
           flagsPlaced: state.difficulty.mines // All mines are flagged automatically
         };
@@ -186,7 +185,6 @@ export const GameProvider = ({ children }) => {
 
         const clickHandler = (e) => {
           dispatch( { type: 'PLAYING_GAME' });
-          console.log('aaaa');
         };
 
         document.querySelector("#board > div > div").addEventListener('click', clickHandler);
