@@ -5,13 +5,15 @@ import './App.css'
 import { GameProvider } from './context/GameProvider'
 import ControlPanel from './components/ControlPanel/ControlPanel'
 import Board from './components/Board/Board'
+import Records from './components/Modals/Modals'
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   return (
     <div id='App'>
       <GameProvider>
         <div id='heading container'>
-          <h1 id='title'>MINESWEEPER</h1>
+          <Records />
         </div>
         <div id='control-panel'>
           <ControlPanel></ControlPanel>
