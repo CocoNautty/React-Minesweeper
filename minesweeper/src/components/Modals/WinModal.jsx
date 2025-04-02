@@ -21,7 +21,7 @@ const WinModal = () => {
             setShow(true);
         }
     }, [gameStatus]);
-    
+
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>

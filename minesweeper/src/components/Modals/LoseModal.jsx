@@ -7,6 +7,12 @@ const LoseModal = () => {
 
     const handleClose = () => setShow(false);
 
+    useEffect(() => {
+            if (gameStatus === 'lost') {
+                setShow(true);
+            }
+        }, [gameStatus]);
+
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
