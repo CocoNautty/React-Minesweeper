@@ -7,6 +7,7 @@ import ControlPanel from './components/ControlPanel/ControlPanel'
 import Board from './components/Board/Board'
 import Records from './components/Scoreboard/Scoreboard'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import WinModal from './components/Modals/WinModal'
 function App() {
 
   return (
@@ -14,6 +15,7 @@ function App() {
       <GameProvider>
         <div id='heading container'>
           <Records />
+          <WinModal />
         </div>
         <div id='control-panel'>
           <ControlPanel></ControlPanel>
