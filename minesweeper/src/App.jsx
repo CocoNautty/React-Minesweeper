@@ -25,7 +25,7 @@ function App() {
         <div id='board'>
           <Board></Board>
         </div>
-        <footer><p>Yixuan Chen, Anlin Ma &copy; 2025</p></footer>
+        <footer><p>Yixuan Chen, Anlin Ma &copy; {new Date().getFullYear()}</p></footer>
       </GameProvider>
     </div>
   )

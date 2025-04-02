@@ -3,19 +3,19 @@ export const DIFFICULTIES = {
       name: 'Easy',
       width: 9,
       height: 9,
-      mines: 1
+      mines: 10
     },
     MEDIUM: {
       name: 'Medium',
       width: 16,
       height: 16,
-      mines: 1
+      mines: 40
     },
     HARD: {
       name: 'Hard',
       width: 30,
       height: 16,
-      mines: 1
+      mines: 99
     },
     CUSTOM: {
       name: 'Custom',
