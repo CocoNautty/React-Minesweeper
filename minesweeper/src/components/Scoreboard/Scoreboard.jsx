@@ -2,13 +2,17 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Tabs } from 'antd';
+import styles from './Scoreboard.module.css';
 
 const Records = () => {
     const List = ({ players }) => {
         return (
-            <ul>
+            <ul className="list-group">
                 {players.map((player, index) => (
-                    <li key={index}>{player.name}: {player.score}</li>
+                    <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                        <div>{player.name}</div>
+                        <div>{player.score}</div>
+                    </li>
                 ))}
             </ul>
         );
@@ -38,7 +42,6 @@ const Records = () => {
                 return res.json();
             })
             .then((json) => {
-                console.log(json);
                 const formattedItems = json.map(ranking => ({
                     ...ranking,
                     children: <List players={ranking.children} />
@@ -47,7 +50,6 @@ const Records = () => {
                 setLoading(false);
             })
             .catch((err) => {
-                console.error('Fetch error:', err);
                 setError(err.message);
                 setLoading(false);
             });
@@ -55,7 +57,7 @@ const Records = () => {
 
     return (
         <>
-            <h1 variant="primary" onClick={handleShow}>
+            <h1 variant="primary" onClick={handleShow} className={styles.title}>
                 MINESWEEPER
             </h1>
 
