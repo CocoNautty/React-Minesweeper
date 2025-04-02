@@ -19,10 +19,10 @@ const LoseModal = () => {
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>You Lose!</Modal.Title>
+                <Modal.Title>⛔You Lose!⛔</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h3>Trash!</h3>
+                <h3>💩Trash!💩</h3>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>

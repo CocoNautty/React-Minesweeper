@@ -55,14 +55,15 @@ const WinModal = () => {
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>You Win!</Modal.Title>
+                <Modal.Title>🎉You Win!🎉</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <h3>Do you want to record your score?</h3>
+                <br></br>
                 <div>Your score is {formatTime(timer)}</div>
+                <br></br>
                 <form onSubmit={handleSubmit}>
                     <fieldset>
-                        <legend>Winner Info</legend>
                         <label htmlFor="name_id">Your Name</label>
                         <input
                             type="text"
@@ -72,6 +73,7 @@ const WinModal = () => {
                             onChange={(e) => setName(e.target.value)}
                             required
                         />
+                        <br></br>
                         <br></br>
                         <Modal.Footer>
                             <Button
