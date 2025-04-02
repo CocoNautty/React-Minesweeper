@@ -5,20 +5,50 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 const WinModal = () => {
-    const API='https://minesweeper.pythonanywhere.com/api/scoreboard/'
+    const API='https://minesweeper.pythonanywhere.com/api/scoreboard/';
     const { state } = useContext(GameContext);
     const { gameStatus, timer, difficulty } = state;
     const [show, setShow] = useState(false);
+    const [name, setName] = useState('');
+    const [submitting, setSubmitting] = useState(false);
 
     const handleClose = () => setShow(false);
 
     const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmitting(true);
+
+        // Create JSON data object with name and score
+        const data = {
+            name: name,
+            score: timer
+        };
+
+        // Send JSON data to API using fetch
+        fetch(API + difficulty.name.toLowerCase(), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            setSubmitting(false);
+            handleClose();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            setSubmitting(false);
+        });
     };
 
     // Update modal visibility when game is won
     useEffect(() => {
         if (gameStatus === 'won') {
             setShow(true);
+            setName('');
         }
     }, [gameStatus]);
 
@@ -30,15 +60,25 @@ const WinModal = () => {
             <Modal.Body>
                 <h3>Do you want to record your score?</h3>
                 <div>Your score is {formatTime(timer)}</div>
-                <form action={API+difficulty.name.toLowerCase()} method="POST">
+                <form onSubmit={handleSubmit}>
                     <fieldset>
                         <legend>Winner Info</legend>
-                        <label for="name_id">Your Name</label>
-                        <input type="text" placeholder="Enter Your Name" id="name_id" name="name" ></input>
-                        <br></br>
-                        <label for="score_id">Your Score</label>
-                        <input type="text" disabled id="score_id" name="score" value={timer}></input>
-                        <input type="submit" value="Record my score"></input>
+                        <label htmlFor="name_id">Your Name</label>
+                        <input
+                            type="text"
+                            placeholder="Enter Your Name"
+                            id="name_id"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            disabled={submitting}
+                        >
+                            {submitting ? 'Submitting...' : 'Record my score'}
+                        </Button>
                     </fieldset>
                 </form>
             </Modal.Body>
