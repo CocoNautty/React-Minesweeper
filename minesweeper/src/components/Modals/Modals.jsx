@@ -43,19 +43,18 @@ const Records = () => {
     let items=[]
     fetch('https://minesweeper.pythonanywhere.com/api/scoreboard')
         .then((res) => {
-            res.json();
-            console.log(res)
+            return res.json();
         })
         .then((json) => {
-            console.log(json)
             items = json.map(ranking => ({
                 ...ranking,
                 children: <List players={ranking.children} />
-                }));;
+            }));;
         })
 
-        // Create proper items for Tabs
-        console.log(items)
+    // Create proper items for Tabs
+    console.log(items)
+
     return (
         <>
             <h1 variant="primary" onClick={handleShow}>
