@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import GameContext from '../../context/GameContextObj';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 const LoseModal = () => {
     const [show, setShow] = useState(false);
+    const { state } = useContext(GameContext);
+    const { gameStatus } = state;
 
     const handleClose = () => setShow(false);
 
