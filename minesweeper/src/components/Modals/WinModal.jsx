@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 const WinModal = () => {
+    const API='https://minesweeper.pythonanywhere.com/api/scoreboard/'
     const { state } = useContext(GameContext);
     const { gameStatus, timer, difficulty } = state;
     const [show, setShow] = useState(false);
@@ -20,7 +21,7 @@ const WinModal = () => {
             setShow(true);
         }
     }, [gameStatus]);
-
+    
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -29,7 +30,7 @@ const WinModal = () => {
             <Modal.Body>
                 <h3>Do you want to record your score?</h3>
                 <div>Your score is {formatTime(timer)}</div>
-                <form>
+                <form action={API+difficulty.name.toLowerCase()} method="POST">
                     <fieldset>
                         <legend>Winner Info</legend>
                         <label for="name_id">Your Name</label>
