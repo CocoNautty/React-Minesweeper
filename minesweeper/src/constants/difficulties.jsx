@@ -3,7 +3,7 @@ export const DIFFICULTIES = {
       name: 'Easy',
       width: 9,
       height: 9,
-      mines: 10
+      mines: 1
     },
     MEDIUM: {
       name: 'Medium',

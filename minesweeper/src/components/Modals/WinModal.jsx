@@ -35,6 +35,9 @@ const WinModal = () => {
                         <legend>Winner Info</legend>
                         <label for="name_id">Your Name</label>
                         <input type="text" placeholder="Enter Your Name" id="name_id" name="name" ></input>
+                        <br></br>
+                        <label for="score_id">Your Score</label>
+                        <input type="text" disabled id="score_id" name="score" value={timer}></input>
                         <input type="submit" value="Record my score"></input>
                     </fieldset>
                 </form>
