@@ -19,7 +19,7 @@ const Board = () => {
   };
 
   return (
-    <div className="BoardContainer">
+    <div className="board-container">
       <div className="board" style={gridStyle}>
         {board.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
