@@ -9,13 +9,13 @@ export const DIFFICULTIES = {
       name: 'Medium',
       width: 16,
       height: 16,
-      mines: 40
+      mines: 1
     },
     HARD: {
       name: 'Hard',
       width: 30,
       height: 16,
-      mines: 99
+      mines: 1
     },
     CUSTOM: {
       name: 'Custom',

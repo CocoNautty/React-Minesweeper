@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 const WinModal = () => {
-    const API='https://minesweeper.pythonanywhere.com/api/scoreboard/';
+    const API = 'https://minesweeper.pythonanywhere.com/api/scoreboard/';
     const { state } = useContext(GameContext);
     const { gameStatus, timer, difficulty } = state;
     const [show, setShow] = useState(false);
@@ -32,16 +32,16 @@ const WinModal = () => {
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            setSubmitting(false);
-            handleClose();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            setSubmitting(false);
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                setSubmitting(false);
+                handleClose();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                setSubmitting(false);
+            });
     };
 
     // Update modal visibility when game is won
@@ -72,21 +72,24 @@ const WinModal = () => {
                             onChange={(e) => setName(e.target.value)}
                             required
                         />
-                        <Button
-                            type="submit"
-                            variant="primary"
-                            disabled={submitting}
-                        >
-                            {submitting ? 'Submitting...' : 'Record my score'}
-                        </Button>
+                        <br></br>
+                        <Modal.Footer>
+                            <Button
+                                type="submit"
+                                variant="primary"
+                                disabled={submitting}
+                            >
+                                {submitting ? 'Submitting...' : 'Record my score'}
+                            </Button>
+                            <Button variant="secondary" onClick={handleClose}>
+                                No, thanks
+                            </Button>
+                        </Modal.Footer>
+
                     </fieldset>
                 </form>
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    No, thanks
-                </Button>
-            </Modal.Footer>
+
         </Modal>
     );
 };
