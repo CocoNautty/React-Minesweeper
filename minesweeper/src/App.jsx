@@ -8,6 +8,7 @@ import Board from './components/Board/Board'
 import Records from './components/Scoreboard/Scoreboard'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import WinModal from './components/Modals/WinModal'
+import LoseModal from './components/Modals/LoseModal'
 function App() {
 
   return (
@@ -16,6 +17,7 @@ function App() {
         <div id='heading container'>
           <Records />
           <WinModal />
+          <LoseModal />
         </div>
         <div id='control-panel'>
           <ControlPanel></ControlPanel>
