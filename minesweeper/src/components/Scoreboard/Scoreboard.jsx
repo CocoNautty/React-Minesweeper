@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { formatTime } from '../../utils/formatTime';
 import { Tabs } from 'antd';
 import styles from './Scoreboard.module.css';
 
@@ -8,10 +9,14 @@ const Records = () => {
     const List = ({ players }) => {
         return (
             <ul className="list-group">
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                    <div className="fw-bold">Player</div>
+                    <div className="fw-bold">Time</div>
+                </li>
                 {players.map((player, index) => (
                     <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                         <div>{player.name}</div>
-                        <div>{player.score}</div>
+                        <div>{formatTime(player.score)}</div>
                     </li>
                 ))}
             </ul>
@@ -63,7 +68,7 @@ const Records = () => {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Game Records</Modal.Title>
+                    <Modal.Title>Leaderboard</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {loading ? (
