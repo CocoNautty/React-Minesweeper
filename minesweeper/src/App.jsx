@@ -5,7 +5,7 @@ import './App.css'
 import { GameProvider } from './context/GameProvider'
 import ControlPanel from './components/ControlPanel/ControlPanel'
 import Board from './components/Board/Board'
-import Records from './components/Modals/Modals'
+import Records from './components/Scoreboard/Scoreboard'
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
