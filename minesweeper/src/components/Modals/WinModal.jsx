@@ -28,15 +28,12 @@ const WinModal = () => {
             </Modal.Header>
             <Modal.Body>
                 <h3>Do you want to record your score?</h3>
+                <div>Your score is {formatTime(timer)}</div>
                 <form>
                     <fieldset>
                         <legend>Winner Info</legend>
-
                         <label for="name_id">Your Name</label>
                         <input type="text" placeholder="Enter Your Name" id="name_id" name="name" ></input>
-                        <label for="score_id">Your Score</label>
-                        <input type="text" id="score_id" name="score" >{ }</input>
-
                         <input type="submit" value="Record my score"></input>
                     </fieldset>
                 </form>

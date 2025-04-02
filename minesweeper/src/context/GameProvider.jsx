@@ -142,35 +142,6 @@ const gameReducer = (state, action) => {
             isFlagged: !boardCell.revealed && boardCell.isMine ? true : boardCell.isFlagged
           }))
         );
-        // const [show, setShow] = useState(true);
-        // const [items, setItems] = useState([]);
-        // const [loading, setLoading] = useState(false);
-        // const [error, setError] = useState(null);
-        // const handleClose = () => setShow(false);
-        // <Modal show={show} onHide={handleClose}>
-        //   <Modal.Header closeButton>
-        //     <Modal.Title>You Win!</Modal.Title>
-        //   </Modal.Header>
-        //   <Modal.Body><h3>Do you want to record your score?</h3>
-        //     <form>
-        //       <fieldset>
-        //         <legend>Winner Info</legend>
-
-        //         <label for="name_id">Your Name</label>
-        //         <input type="text" placeholder="Enter Your Name" id="name_id" name="name" ></input>
-        //         <label for="score_id">Your Score</label>
-        //         <input type="text" id="score_id" name="score" >{ }</input>
-
-        //         <input type="submit" value="Record my score"></input>
-        //       </fieldset>
-        //     </form>
-        //   </Modal.Body>
-        //   <Modal.Footer>
-        //     <Button variant="secondary" onClick={handleClose}>
-        //       No.
-        //     </Button>
-        //   </Modal.Footer>
-        // </Modal>
         return {
           ...state,
           board: winBoard,
