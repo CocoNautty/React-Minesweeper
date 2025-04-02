@@ -4,6 +4,11 @@ import { DIFFICULTIES } from '../constants/difficulties';
 import { generateBoard } from '../utils/boardGenerator';
 import { revealCell } from '../utils/cellReveal';
 import GameContext from './GameContextObj';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // Initial game state
 const initialState = {
@@ -38,7 +43,7 @@ const gameReducer = (state, action) => {
       };
 
     case 'PLAYING_GAME':
-      return{
+      return {
         ...state,
         isTimerRunning: true
       };
@@ -61,7 +66,7 @@ const gameReducer = (state, action) => {
         gameStatus: 'idle'
       };
 
-    case 'REVEAL_CELL':{
+    case 'REVEAL_CELL': {
       const { row, col } = action.payload;
       let updatedBoard = [...state.board];
       const cell = updatedBoard[row][col];
@@ -137,7 +142,35 @@ const gameReducer = (state, action) => {
             isFlagged: !boardCell.revealed && boardCell.isMine ? true : boardCell.isFlagged
           }))
         );
+        const [show, setShow] = useState(true);
+        const [items, setItems] = useState([]);
+        const [loading, setLoading] = useState(false);
+        const [error, setError] = useState(null);
+        const handleClose = () => setShow(false);
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>You Win!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body><h3>Do you want to record your score?</h3>
+            <form>
+              <fieldset>
+                <legend>Winner Info</legend>
 
+                <label for="name_id">Your Name</label>
+                <input type="text" placeholder="Enter Your Name" id="name_id" name="name" ></input>
+                <label for="score_id">Your Score</label>
+                <input type="text" id="score_id" name="score" >{ }</input>
+
+                <input type="submit" value="Record my score"></input>
+              </fieldset>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              No.
+            </Button>
+          </Modal.Footer>
+        </Modal>
         return {
           ...state,
           board: winBoard,
@@ -154,7 +187,7 @@ const gameReducer = (state, action) => {
       };
     }
 
-    case 'TOGGLE_FLAG':{
+    case 'TOGGLE_FLAG': {
       const { row, col } = action.payload;
 
       // Don't allow flagging if game isn't in progress or if the cell is already revealed
@@ -220,35 +253,35 @@ const gameReducer = (state, action) => {
 };
 
 export const GameProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(gameReducer, initialState);
+  const [state, dispatch] = useReducer(gameReducer, initialState);
 
-    // set game start
-    useEffect(() => {
-      if (state.difficulty) {
+  // set game start
+  useEffect(() => {
+    if (state.difficulty) {
 
-        if(state.gameStatus==='idle') {
-          dispatch({ type: 'START_GAME' });
-        }
-
-        const clickHandler = (e) => {
-          if(state.gameStatus !== 'playing') {
-            return;
-          }
-          dispatch({ type: 'PLAYING_GAME' });
-        };
-
-        document.querySelector("#board > div > div").addEventListener('click', clickHandler);
-
-        return () => {
-          document.querySelector("#board > div > div").removeEventListener('click', clickHandler);
-        }
-
+      if (state.gameStatus === 'idle') {
+        dispatch({ type: 'START_GAME' });
       }
-    }, [state.difficulty, state.gameStatus]);
 
-    return (
-      <GameContext.Provider value={{ state, dispatch }}>
-        {children}
-      </GameContext.Provider>
-    );
-  };
+      const clickHandler = (e) => {
+        if (state.gameStatus !== 'playing') {
+          return;
+        }
+        dispatch({ type: 'PLAYING_GAME' });
+      };
+
+      document.querySelector("#board > div > div").addEventListener('click', clickHandler);
+
+      return () => {
+        document.querySelector("#board > div > div").removeEventListener('click', clickHandler);
+      }
+
+    }
+  }, [state.difficulty, state.gameStatus]);
+
+  return (
+    <GameContext.Provider value={{ state, dispatch }}>
+      {children}
+    </GameContext.Provider>
+  );
+};
