@@ -6,27 +6,8 @@ import Records from './components/Scoreboard/Scoreboard'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import WinModal from './components/Modals/WinModal'
 import LoseModal from './components/Modals/LoseModal'
-import { useState, useEffect, useRef } from 'react'
 
 function App() {
-  const [isTabletOrLarger, setIsTabletOrLarger] = useState(window.innerWidth >= 1000);
-  const prevWidth = useRef(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const currentWidth = window.innerWidth;
-      // Only update state when crossing the breakpoint threshold
-      if ((currentWidth >= 1000 && prevWidth.current < 1000) ||
-          (currentWidth < 1000 && prevWidth.current >= 1000)) {
-        setIsTabletOrLarger(currentWidth >= 1000);
-      }
-      prevWidth.current = currentWidth;
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
     <div id='App'>
       <GameProvider>
@@ -36,25 +17,26 @@ function App() {
           <LoseModal />
         </div>
 
-        {isTabletOrLarger ? (
-          <>
-            <div id='control-panel'>
-              <ControlPanel></ControlPanel>
-            </div>
-            <div id='board'>
-              <Board></Board>
-            </div>
-          </>
-        ) : (
-          <div className="device-warning" style={{
-            padding: '20px',
-            textAlign: 'center',
-            margin: '20px auto'
-          }}>
-            <p>⚠️ Sorry... You'll have to play on a larger monitor and with a mouse that can right click. ⚠️ </p>
+        <div className="desktop-only">
+          <div id='control-panel'>
+            <ControlPanel></ControlPanel>
           </div>
-        )}
-        <footer><p>Yixuan Chen, Anlin Ma &copy; {new Date().getFullYear()}</p></footer>
+          <div id='board'>
+            <Board></Board>
+          </div>
+        </div>
+
+        <div className="mobile-message" style={{
+          padding: '15px',
+          margin: '15px',
+          textAlign: 'center',
+          border: '1px solid #ccc',
+          borderRadius: '5px'
+        }}>
+          <p style={{padding: 0, margin: 0}}>⚠️ Sorry... You'll have to play on a larger monitor and with a mouse that can right click. ⚠️</p>
+        </div>
+
+        <footer><p>Yixuan Chen, Anlin Ma &copy; 2025</p></footer>
       </GameProvider>
     </div>
   )
