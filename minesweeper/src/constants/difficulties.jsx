@@ -9,7 +9,7 @@ export const DIFFICULTIES = {
       name: 'Medium',
       width: 16,
       height: 16,
-      mines: 1
+      mines: 40
     },
     HARD: {
       name: 'Hard',
