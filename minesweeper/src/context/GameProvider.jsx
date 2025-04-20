@@ -1,4 +1,12 @@
-// Manages the game state across components
+/**
+ * @file GameProvider.jsx
+ * @description
+ * - Manages the game state using React's `useReducer` hook.
+ * - Handles game logic for starting, restarting, revealing cells, flagging, and checking win/loss conditions.
+ * - Provides the game state and dispatch function via `GameContext`.
+ * - Integrates with `generateBoard` and `cellReveal` utilities for board generation and cell updates.
+ */
+
 import React, { useReducer, useEffect } from 'react';
 import { DIFFICULTIES } from '../constants/difficulties';
 import { generateBoard } from '../utils/boardGenerator';
@@ -21,7 +29,14 @@ const initialState = {
   firstClick: true, // To ensure first click is never a mine
 };
 
-// Game reducer with all possible actions
+/**
+ * gameReducer manages state transitions for the Minesweeper game.
+ *
+ * @param {Object} state - The current game state.
+ * @param {Object} action - The action object that modifies the state.
+ * @returns {Object} The updated game state.
+ */
+
 const gameReducer = (state, action) => {
   switch (action.type) {
     case 'NEW_GAME':
@@ -222,6 +237,18 @@ const gameReducer = (state, action) => {
       return state;
   }
 };
+
+/**
+ * GameProvider component manages and provides the game state using the `useReducer` hook.
+ *
+ * - Wraps the app in the `GameContext.Provider` to share game state and dispatch function.
+ * - Handles the initial game setup, state transitions, and side effects like handling clicks.
+ * - Initializes the game board and provides functions to start, restart, and change difficulty.
+ *
+ * @component
+ * @param {Object} children - The components that consume the game context.
+ * @returns {JSX.Element} The GameContext provider wrapping the child components.
+ */
 
 export const GameProvider = ({ children }) => {
   const [state, dispatch] = useReducer(gameReducer, initialState);
