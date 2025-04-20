@@ -1,5 +1,11 @@
 # Minesweeper Game - React Implementation
 
+github repo: [https://github.com/CocoNautty/React-Minesweeper](https://github.com/CocoNautty/React-Minesweeper)
+
+deployed page: [https://coconautty.github.io/React-Minesweeper/](https://coconautty.github.io/React-Minesweeper/)
+
+
+
 ![Minesweeper Game](./minesweeper/public/assets/images/readme_image.png)
 
 ## Project Overview
@@ -14,7 +20,7 @@ This project is a modern React implementation of the classic Minesweeper game. P
 - **Multiple difficulty levels**: Easy (9×9, 10 mines), Medium (16×16, 40 mines), Hard (30×16, 99 mines), and Custom
 - **Real-time timer** with millisecond precision
 - **Flag counter** showing remaining unflagged mines
-- **Leaderboard system** that saves and displays high scores by difficulty level
+- **Leaderboard system** that saves and displays high scores by difficulty level triggered by clicking on the title 'MINESWEEPER'
 - **Game state management** with win/lose detection and appropriate feedback
 - **Visual feedback** for all game actions
 - **Responsive design** with desktop focus
@@ -23,8 +29,8 @@ This project is a modern React implementation of the classic Minesweeper game. P
 
 ## Core Files and Directories
 
-```
-textsrc/
+```text
+src/
 ├── components/       # UI Components
 │   ├── Board/        # Game board implementation
 │   ├── ControlPanel/ # Game controls
@@ -60,7 +66,7 @@ textsrc/
 - Created a clean component architecture with separation of concerns
 - Implemented complex game logic including recursive cell revealing
 - Built a responsive UI with appropriate visual feedback
-- Connected to an external API for leaderboard functionality
+- Built a simple flask back-end API to store and retrieve data for leaderboard functionality
 - Added multiple difficulty levels with custom game options
 
 ## Limitations and Challenges
