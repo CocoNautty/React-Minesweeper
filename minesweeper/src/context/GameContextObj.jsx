@@ -18,8 +18,6 @@ import { createContext } from 'react';
  * @default {Object} An empty context, to be populated by a provider component.
  */
 
-import { createContext } from 'react';
-
 const GameContext = createContext();
 
 export default GameContext;
