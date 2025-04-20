@@ -1,7 +1,25 @@
+/**
+ * @file DifficultySelector.jsx
+ * @description
+ * - Allows the user to select a difficulty level (Easy, Medium, Hard, or Custom).
+ * - If 'Custom' is selected, a form appears to input custom width, height, and mine count.
+ * - Validates and dispatches a new difficulty setting to the game context.
+ */
+
 import React, { useContext, useState } from 'react';
 import GameContext from '../../context/GameContextObj';
 import { DIFFICULTIES } from '../../constants/difficulties';
-// import './DifficultySelector.css';
+
+/**
+ * DifficultySelector component provides difficulty selection options for the game.
+ * 
+ * - Offers preset options: Easy, Medium, Hard.
+ * - Custom option allows users to input their own board size and mine count.
+ * - Validates custom input to prevent invalid board configurations.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered difficulty selection UI.
+ */
 
 const DifficultySelector = () => {
     const { dispatch } = useContext(GameContext);
@@ -9,6 +27,14 @@ const DifficultySelector = () => {
     const [customWidth, setCustomWidth] = useState(10);
     const [customHeight, setCustomHeight] = useState(10);
     const [customMines, setCustomMines] = useState(10);
+
+    /**
+     * Handles change in difficulty selection.
+     * If 'CUSTOM' is selected, shows the custom input form.
+     * Otherwise, dispatches the selected preset difficulty.
+     * 
+     * @param {string} difficulty - The selected difficulty level.
+     */
 
     const handleDifficultyChange = (difficulty) => {
         if (difficulty === 'CUSTOM') {
@@ -22,6 +48,13 @@ const DifficultySelector = () => {
         }
     };
 
+    /**
+     * Handles submission of the custom difficulty form.
+     * Ensures inputs are within valid ranges before dispatching.
+     * 
+     * @param {React.FormEvent} e - The form submission event.
+     */
+    
     const handleCustomSubmit = (e) => {
         e.preventDefault();
 

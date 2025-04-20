@@ -1,8 +1,27 @@
+/**
+ * @file WinModal.jsx
+ * @description
+ * - Displays a modal when the player wins the game.
+ * - Allows the user to submit their name and score to a scoreboard API.
+ * - Uses Bootstrap's Modal and Button components for styling.
+ */
+
 import React, { useContext, useState, useEffect } from 'react';
 import GameContext from '../../context/GameContextObj';
 import { formatTime } from '../../utils/formatTime';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+
+/**
+ * WinModal component that pops up when the game status is 'won'.
+ *
+ * - Shows the player's time.
+ * - Provides a form to submit the score with their name.
+ * - Sends the score to an external API endpoint based on difficulty.
+ *
+ * @component
+ * @returns {JSX.Element} The modal displayed when the player wins the game.
+ */
 
 const WinModal = () => {
     const API = 'https://minesweeper.pythonanywhere.com/api/scoreboard/';
@@ -12,7 +31,18 @@ const WinModal = () => {
     const [name, setName] = useState('');
     const [submitting, setSubmitting] = useState(false);
 
+    /**
+     * Closes the modal.
+     */
+
     const handleClose = () => setShow(false);
+
+    /**
+     * Handles the form submission to record a score.
+     * Sends a POST request with the player's name and score to the API.
+     *
+     * @param {React.FormEvent} e - The form submission event.
+     */
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -44,7 +74,10 @@ const WinModal = () => {
             });
     };
 
-    // Update modal visibility when game is won
+/**
+     * Opens the modal when the game status changes to 'won'.
+     */
+    
     useEffect(() => {
         if (gameStatus === 'won') {
             setShow(true);

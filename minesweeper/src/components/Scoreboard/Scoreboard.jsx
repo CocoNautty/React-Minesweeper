@@ -1,3 +1,11 @@
+/**
+ * @file Scoreboard.jsx
+ * @description
+ * - Displays the scoreboard in a modal.
+ * - Fetches and renders player rankings from an API.
+ * - Includes a list of players with their names and scores (formatted time).
+ */
+
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -5,7 +13,27 @@ import { formatTime } from '../../utils/formatTime';
 import { Tabs } from 'antd';
 import styles from './Scoreboard.module.css';
 
+/**
+ * Records component displays the leaderboard in a modal.
+ *
+ * - Fetches player ranking data from an API when the modal is opened.
+ * - Renders a list of players with their names and scores (formatted time).
+ * - Displays loading state, error state, and message if no data is available.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered scoreboard modal with player rankings.
+ */
+
 const Records = () => {
+
+    /**
+     * List component renders a list of players and their scores.
+     * 
+     * @param {Object} props - Component props.
+     * @param {Array} props.players - Array of player objects containing name and score.
+     * @returns {JSX.Element} A list of players with their names and formatted scores.
+     */
+
     const List = ({ players }) => {
         return (
             <ul className="list-group">
@@ -28,13 +56,27 @@ const Records = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    /**
+     * Closes the modal.
+     */
+    
     const handleClose = () => setShow(false);
+
+    /**
+     * Opens the modal and fetches scoreboard data.
+     */
+
     const handleShow = () => {
         setShow(true);
         // Fetch data when the modal is opened
         fetchScoreboard();
     };
 
+    /**
+     * Fetches the scoreboard data from the API and updates the state.
+     * Handles loading, error, and updates the items state with formatted data.
+     */
+    
     const fetchScoreboard = () => {
         setLoading(true);
         setError(null);

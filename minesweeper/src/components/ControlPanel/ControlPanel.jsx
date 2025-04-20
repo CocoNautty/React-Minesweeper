@@ -1,22 +1,42 @@
-// Contains game controls (restart, new game)
+/**
+ * @file ControlPanel.jsx
+ * @description
+ * - Contains game controls (restart, new game).
+ * - Houses the difficulty selector and game timer.
+ * - Displays mine counter (flags remaining).
+ */
 
-// Houses difficulty selector and timer
-
-// Displays mine counter (flags remaining)
 import React, { useContext } from 'react';
 import GameContext from '../../context/GameContextObj';
 import DifficultySelector from '../DifficultySelector/DifficultySelector';
 import Timer from '../Timer/Timer';
 import './ControlPanel.css'
 
+/**
+ * ControlPanel component provides user controls for the game.
+ *
+ * - Displays a timer using the Timer component.
+ * - Shows the number of remaining mines (total mines - flags placed).
+ * - Includes buttons to restart the current game or start a new one.
+ * - Contains the DifficultySelector for choosing game difficulty.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered control panel with game management options.
+ */
+
 const ControlPanel = () => {
     const { state, dispatch } = useContext(GameContext);
     const { difficulty, flagsPlaced, gameStatus } = state;
-
+    /**
+     * Dispatches an action to start a new game.
+     */
     const handleNewGame = () => {
         dispatch({ type: 'NEW_GAME' });
     };
 
+    /**
+     * Dispatches an action to restart the current game.
+     */
     const handleRestart = () => {
         dispatch({ type: 'RESTART_GAME' });
     };

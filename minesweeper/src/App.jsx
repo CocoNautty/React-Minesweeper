@@ -7,6 +7,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import WinModal from './components/Modals/WinModal'
 import LoseModal from './components/Modals/LoseModal'
 
+/**
+ * The root component for the game application.
+ * 
+ * Wraps the main game interface in a GameProvider context.
+ * Renders components for score display, control panel, game board,
+ * and modals for win / loss notifications.
+ * 
+ * Displays a warning message on mobile devices indicating that the game
+  * should be played on a larger screen with mouse support.
+ *
+ * @component
+    * @returns { JSX.Element } The rendered App component.
+ */
+
 function App() {
   return (
     <div id='App'>
@@ -33,7 +47,7 @@ function App() {
           border: '1px solid #ccc',
           borderRadius: '5px'
         }}>
-          <p style={{padding: 0, margin: 0}}>⚠️ Sorry... You'll have to play on a larger monitor and with a mouse that can right click. ⚠️</p>
+          <p style={{ padding: 0, margin: 0 }}>⚠️ Sorry... You'll have to play on a larger monitor and with a mouse that can right click. ⚠️</p>
         </div>
 
         <footer><p>Yixuan Chen, Anlin Ma &copy; 2025</p></footer>
